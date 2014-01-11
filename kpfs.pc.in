@@ -1,0 +1,12 @@
+prefix=@prefix@
+exec_prefix=${prefix}
+libdir=${prefix}/lib
+includedir=${prefix}/include
+
+Name: @PACKAGE_NAME@
+Description: kpfs is a filesystem for accessing kuaipan.cn based on FUSE.
+Version: @VERSION@
+Requires: 
+Libs: -L${libdir} -lkpfs
+Cflags: -I${includedir}/kpfs
+

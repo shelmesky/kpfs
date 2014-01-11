@@ -1,0 +1,53 @@
+2012-08-13 Tao Yu <yut616@gmail.com>
+	* release 0.1 since kpfs works for read/write from kuaipan.cn.
+
+2012-04-15 Tao Yu <yut616@gmail.com>
+	* refine the write related function, we will not upload swap file, e.g. swp.
+	* now write function could work.
+
+2012-04-14 Tao Yu <yut616@gmail.com>
+	* refine node free function, we will handle free of node by ourselves, we will not use g_free
+	* refine mkdir
+	* add rmdir, unlink, rename function
+
+2012-04-10 Tao Yu <yut616@gmail.com>
+	* add write function, I will use a tmp file to store data, and upload it in "release" function of fuse.
+	* kuaipan API does not support 0 size file upload, so we need to write a '\0' to empty file, e.g. touch command.
+
+2012-04-08 Tao Yu <yut616@gmail.com>
+	* we will use oauth to create url link, and use curl POST with curl_formadd CURLFORM_COPYNAME, this is MUST in kuaipan API
+	* refine param of upload file function, we will use dest_fullpath and src_fullpath
+
+2012-04-04 Tao Yu <yut616@gmail.com>
+	* add mkdir function, and rebuild the parent node, but node has bug, I need to debug it later.
+
+2012-04-01 Tao Yu <yut616@gmail.com>
+	* add statfs function by account info.
+
+2012-03-30 Tao Yu <yut616@gmail.com>
+	* get feedback from author of liboauth, he is debugging the fuse issue.
+	* fix "could not get chinese dir metadata", now it could show chinese dir.
+	* we need to use liboauth-0.9.5, otherwise, the base_url will be modified by liboauth.
+	* user needs to compile liboauth-0.9.5 by themselves on ubuntu 11.10
+
+2012-03-29 Tao Yu <yut616@gmail.com>
+	* find we could not call oauth function in main function, otherwise, getattr function will not work.
+	* report liboauth issue (nss fuse) to its author.
+
+2012-03-25 Tao Yu <yut616@gmail.com> 
+	* create kpfs.conf, it is json format, we will get consumer key and secret from it firstly.
+	* we will put mount path in kpfs.conf, and pass it to fuse_main.
+
+2012-03-24 Tao Yu <yut616@gmail.com>
+	* use hash table to store sub node for each node, and I could search it by hash iter.
+	* if prepare the whole dir when start, it could show all dirs; 
+	* if do not prepare whole dir when start, and get dir in readdir, there will be a "reused nonce" error.
+
+2012-03-21 Tao Yu <yut616@gmail.com>
+	* write "parse dir", now it could get whole dirs 
+
+2012-03-10 Tao Yu <yut616@gmail.com>
+	* get the access token, and the oauth verifier is not MUST option
+
+2012-03-08 Tao Yu <yut616@gmail.com>
+	* use liboauth to send oauth request and parse response
